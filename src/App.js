@@ -3,6 +3,7 @@ import Web3 from 'web3';
 import Navbar from './common-comp/navbar';
 import Footer from './common-comp/footer';
 import AppRoutes from './Routes';
+import { BrowserRouter } from "react-router-dom";
 
 function App() {
   const [web3, setWeb3] = useState(null);
@@ -51,7 +52,9 @@ function App() {
 
   return (
     <div>
-      <AppRoutes />
+      <BrowserRouter>
+        <AppRoutes />
+      </BrowserRouter>
 
       <Navbar />
       <h1>Metamask Balance Viewer</h1>

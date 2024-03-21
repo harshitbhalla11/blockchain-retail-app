@@ -2,7 +2,7 @@ import './navbar.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 function Navbar() {
     return (
-        <div classNameName="App">
+        <div className="App">
             <nav className="navbar bg-body-tertiary">
                 <div className="container-fluid">
                     <a className="navbar-brand">Navbar</a>

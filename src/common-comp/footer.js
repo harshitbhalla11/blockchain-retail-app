@@ -3,16 +3,16 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Footer() {
     return (
-        <div class="card text-center">
-            <div class="card-header">
+        <div className="card text-center">
+            <div className="card-header">
                 Featured
             </div>
-            <div class="card-body">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+            <div className="card-body">
+                <h5 className="card-title">Special title treatment</h5>
+                <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="#" className="btn btn-primary">Go somewhere</a>
             </div>
-            <div class="card-footer text-muted">
+            <div className="card-footer text-muted">
                 2 days ago
             </div>
         </div>
