@@ -69,21 +69,42 @@ function Navbar() {
     }
   };
 
+  
+
   return (
-    <div className="App">
-      <nav className="navbar bg-body-tertiary">
+    <div>
+    <div>
+      {account && (
+        <div className="row address-nav">
+          <p className="col-8 text-center nav-items">Connected Account: <strong className='font-weight-bold'>{account}</strong></p>
+          <p className="col-4 text-center nav-items">Balance: <strong>{balance} ETH</strong></p>
+        </div>
+      )}
+  
+      <nav className="navbar navbar-light bg-white">
         <div className="container-fluid">
-          <a className="navbar-brand">Navbar</a>
-          <p className="text">Connected Account: {account}</p>
-          <p className="text">Balance: {balance} ETH</p>
-          {!account ? (
-            <button className="btn btn-outline-success" onClick={handleLoginClick}>Connect </button>
-          ) : (
-            <button className="btn btn-outline-danger" onClick={handleDisconnectClick}>Disconnect </button>
-          )}
+          <a className="navbar-brand">Meta Store</a>
+          <div className="d-flex align-items-center">
+            {account && (
+              <button className="btn btn-outline-primary me-2 ms-auto"> <img className="wallet-img" src="/images/cart.gif" alt="" />Cart</button>
+            )}
+            {!account ? (
+              <button className="btn btn-outline-success" onClick={handleLoginClick}>
+                <img className="wallet-img" src="/images/icon.gif" alt="" />
+                Connect
+              </button>
+            ) : (
+              <button className="btn btn-outline-danger" onClick={handleDisconnectClick}>
+                <img className="wallet-img" src="/images/icon.gif" alt="" />
+                Disconnect
+              </button>
+            )}
+          </div>
         </div>
       </nav>
     </div>
+  </div>
+  
   );
 }
 

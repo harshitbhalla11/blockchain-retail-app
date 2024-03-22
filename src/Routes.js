@@ -7,7 +7,6 @@ const AppRoutes = () => {
     return (
         // <BrowserRouter>
             <Routes>
-                {console.log("routes routed")}
                 <Route exact path="/" Component={Home} />
                 <Route path="/products" Component={Products} />
             </Routes>

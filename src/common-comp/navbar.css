@@ -1,0 +1,16 @@
+.navbar {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  }
+  
+  .address-nav{
+    background: rgb(255, 163, 77);
+    
+}
+  .nav-items{
+    margin: 5px 0px;
+    
+  }
+  .wallet-img{
+    width: 30px;
+    margin-right: 8px;
+  }

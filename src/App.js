@@ -9,7 +9,6 @@ function App() {
     <div>
       <Navbar />
       <BrowserRouter>
-        {/* Ensure that AppRoutes is rendered only once */}
         <AppRoutes />
       </BrowserRouter>
       <Footer/>

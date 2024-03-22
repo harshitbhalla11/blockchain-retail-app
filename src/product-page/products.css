@@ -1,0 +1,19 @@
+.product-price{
+    font-weight: 700;
+    font-size: 25px;
+}
+.button-container{
+    display: flex;
+    justify-content: center;
+}
+.button-cart{
+    width: 90%;
+    position: absolute;
+    bottom: 10px;
+
+}
+.card-body-container {
+    min-height: 179.5px; 
+}
+
+
