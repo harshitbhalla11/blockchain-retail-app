@@ -14,3 +14,11 @@
     width: 30px;
     margin-right: 8px;
   }
+  .logo-img{
+    max-width: 40px;
+    margin-right: 10px;
+  }
+  .meta-logo{
+    color: #033E8C;
+    font-weight: 700;
+  }

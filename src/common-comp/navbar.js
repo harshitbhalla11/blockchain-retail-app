@@ -83,7 +83,7 @@ function Navbar() {
   
       <nav className="navbar navbar-light bg-white">
         <div className="container-fluid">
-          <a className="navbar-brand">Meta Store</a>
+          <a className="navbar-brand" href='/'><img className="logo-img" src="/images/logo.png" alt="" /><span className='meta-logo'>Meta Store</span></a>
           <div className="d-flex align-items-center">
             {account && (
               <button className="btn btn-outline-primary me-2 ms-auto"> <img className="wallet-img" src="/images/cart.gif" alt="" />Cart</button>
