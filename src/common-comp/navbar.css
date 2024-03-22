@@ -22,3 +22,16 @@
     color: #033E8C;
     font-weight: 700;
   }
+  .links-container{
+    display: inline;
+  }
+  .links{
+    text-decoration: none;
+    color: black;
+    font-weight: 700;
+
+  }
+  .links:hover{
+    color: #033E8C;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }

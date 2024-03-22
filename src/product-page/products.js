@@ -7,6 +7,7 @@ const Products = () => {
   const [products, setProducts] = useState(productsData);
   const [cryptoData, setCryptoData] = useState({});
   const [selectedCrypto, setSelectedCrypto] = useState('');
+  const [cartItems,SetCartItems]=useState(localStorage.getItem('cartItems')||[])
 
   useEffect(() => {
     const fetchData = async () => {
@@ -40,12 +41,13 @@ const Products = () => {
   }
 
   const handleAddToCart = (product_id) => {
+    console.log("added",product_id)
     const existingCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
     
     const updatedCartItems = [...existingCartItems,product_id ];
     
     localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
-    
+    SetCartItems(updatedCartItems)
   };
 
   return (
@@ -80,7 +82,7 @@ const Products = () => {
                 <Card.Text>Price: {selectedCrypto? selectedCrypto.substring(0, 3).toUpperCase() : '$'}<span className="product-price">{product.price}</span></Card.Text>
 
                 <Card.Title>{product.title}</Card.Title>
-                <Button className='button-cart' variant="outline-success" onClick={handleAddToCart(product.product_id)}>Add to cart</Button>
+                <Button className='button-cart' variant="outline-success" onClick={()=>handleAddToCart(product.id)}>Add to cart</Button>
               </Card.Body>
             </Card>
           </Col>

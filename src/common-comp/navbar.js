@@ -69,42 +69,54 @@ function Navbar() {
     }
   };
 
-  
+
 
   return (
     <div>
-    <div>
-      {account && (
-        <div className="row address-nav">
-          <p className="col-8 text-center nav-items">Connected Account: <strong className='font-weight-bold'>{account}</strong></p>
-          <p className="col-4 text-center nav-items">Balance: <strong>{balance} ETH</strong></p>
-        </div>
-      )}
-  
-      <nav className="navbar navbar-light bg-white">
-        <div className="container-fluid">
-          <a className="navbar-brand" href='/'><img className="logo-img" src="/images/logo.png" alt="" /><span className='meta-logo'>Meta Store</span></a>
-          <div className="d-flex align-items-center">
-            {account && (
-              <button className="btn btn-outline-primary me-2 ms-auto"> <img className="wallet-img" src="/images/cart.gif" alt="" />Cart</button>
-            )}
-            {!account ? (
-              <button className="btn btn-outline-success" onClick={handleLoginClick}>
-                <img className="wallet-img" src="/images/icon.gif" alt="" />
-                Connect
-              </button>
-            ) : (
-              <button className="btn btn-outline-danger" onClick={handleDisconnectClick}>
-                <img className="wallet-img" src="/images/icon.gif" alt="" />
-                Disconnect
-              </button>
-            )}
+      <div>
+        {account && (
+          <div className="row address-nav">
+            <p className="col-8 text-center nav-items">Connected Account: <strong className='font-weight-bold'>{account}</strong></p>
+            <p className="col-4 text-center nav-items">Balance: <strong>{balance} ETH</strong></p>
           </div>
-        </div>
-      </nav>
+        )}
+
+        <nav className="navbar navbar-light bg-white">
+          <div className="container-fluid">
+            <a className="navbar-brand" href='/'>
+              <img className="logo-img" src="/images/logo.png" alt="" />
+              <span className='meta-logo'>Meta Store</span>
+            </a>
+            <a className='links' href='/'>Home</a>
+            <a className='links'href='products'>Products</a>
+            <a className='links'href='donate'>Donate</a>
+
+            <div className="d-flex align-items-center">
+              {account && (
+                <a href='/cart' className="btn btn-outline-primary me-2">
+                  <img className="wallet-img" src="/images/cart.gif" alt="" />
+                  Cart
+                </a>
+              )}
+              {!account ? (
+                <button className="btn btn-outline-success" onClick={handleLoginClick}>
+                  <img className="wallet-img" src="/images/icon.gif" alt="" />
+                  Connect
+                </button>
+              ) : (
+                <button className="btn btn-outline-danger" onClick={handleDisconnectClick}>
+                  <img className="wallet-img" src="/images/icon.gif" alt="" />
+                  Disconnect
+                </button>
+              )}
+            </div>
+          </div>
+        </nav>
+
+
+      </div>
     </div>
-  </div>
-  
+
   );
 }
 
