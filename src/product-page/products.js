@@ -16,6 +16,7 @@ const Products = () => {
           'https://api.coingecko.com/api/v3/simple/price?ids=solana,ethereum,bitcoin,polygon,ripple&vs_currencies=usd'
         );
         setCryptoData(cryptoResponse.data);
+        // setCryptoData({"bitcoin":{"usd":66133},"ethereum":{"usd":3510.29},"ripple":{"usd":0.63773},"solana":{"usd":178.64}})
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -25,8 +26,18 @@ const Products = () => {
   }, []);
 
   const handleCryptoChange = (event) => {
-    setSelectedCrypto(event.target.value);
+    setSelectedCrypto(event);
+    productsData.forEach(product => {
+     
+    product.price =  (product.price / getUSDValue(event)).toFixed(8) ;
+  });
+  setProducts(productsData);
   };
+
+  const getUSDValue =(selected) =>{
+    console.log(selected);
+    return cryptoData[selected].usd;
+  }
 
   const handleAddToCart = (product_id) => {
     const existingCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
@@ -66,7 +77,7 @@ const Products = () => {
             <Card>
               <Card.Img variant="top" src={product.images[1]} alt={product.title} />
               <Card.Body className='card-body-container'>
-                <Card.Text>Price: $<span className="product-price">{product.price}</span></Card.Text>
+                <Card.Text>Price: {selectedCrypto? selectedCrypto.substring(0, 3).toUpperCase() : '$'}<span className="product-price">{product.price}</span></Card.Text>
 
                 <Card.Title>{product.title}</Card.Title>
                 <Button className='button-cart' variant="outline-success" onClick={handleAddToCart(product.product_id)}>Add to cart</Button>
