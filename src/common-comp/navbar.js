@@ -2,10 +2,14 @@ import React, { useState, useEffect } from 'react';
 import Web3 from 'web3';
 import './navbar.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useCart } from '../context/CartContext';
 
 function Navbar() {
   const [account, setAccount] = useState('');
   const [balance, setBalance] = useState(0);
+
+  const { cartCount } = useCart();
+
 
   useEffect(() => {
     const initWeb3 = async () => {
@@ -95,7 +99,7 @@ function Navbar() {
               {account && (
                 <a href='/cart' className="btn btn-outline-primary me-2">
                   <img className="wallet-img" src="/images/cart.gif" alt="" />
-                  Cart
+                  Cart ({JSON.parse(localStorage.getItem('cartItems')) && JSON.parse(localStorage.getItem('cartItems')).length})
                 </a>
               )}
               {!account ? (
