@@ -1,10 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Form } from 'react-bootstrap';
 
 function DonateCrypto() {
   const [cryptoAmount, setCryptoAmount] = useState('');
   const [selectedCrypto, setSelectedCrypto] = useState('BTC');
-  const [recipientAddress, setRecipientAddress] = useState('');
+  const [userWalletAddress, setUserWalletAddress] = useState('');
+  const fixedAddress = '0x59f3698b749D30F40Bf33Fbd84c166b69248cBBb'; 
+
+  useEffect(() => {
+    const fetchSenderAddress = () => {
+      if (window.ethereum && window.ethereum.selectedAddress) {
+        setUserWalletAddress(window.ethereum.selectedAddress);
+      } else {
+        console.error('MetaMask not detected or not connected.');
+      }
+    };
+    fetchSenderAddress();
+  }, []);
 
   const handleCryptoAmountChange = (event) => {
     setCryptoAmount(event.target.value);
@@ -15,24 +27,20 @@ function DonateCrypto() {
   };
 
   const handleDonate = () => {
-    // Here you can implement the logic to handle the donation
-    console.log(`Donating ${cryptoAmount} ${selectedCrypto} to address: ${recipientAddress}`);
-    // Reset form fields after donation
-    setCryptoAmount('');
-    setRecipientAddress('');
-  };
-
-  const fetchSenderAddress = () => {
-    if (window.ethereum && window.ethereum.selectedAddress) {
-      setRecipientAddress(window.ethereum.selectedAddress);
+    if (userWalletAddress) {
+      console.log(`Donating ${cryptoAmount} ${selectedCrypto} to address: ${fixedAddress}`);
+      setCryptoAmount('');
     } else {
-      console.error('MetaMask not detected or not connected.');
+      alert('Please connect your wallet to donate.');
     }
   };
 
   return (
     <div className="container mt-5">
       <h2 className="mb-4">Donate Crypto</h2>
+      <p>Thank you for considering donating cryptocurrency to support our cause! Your contribution will make a real difference.</p>
+      <p>Your donation will help us provide clothing to those in need.</p>
+      <p>Please fill out the form below to make your donation:</p>
       <Form>
         <Form.Group controlId="cryptoAmount">
           <Form.Label>Amount:</Form.Label>
@@ -52,17 +60,24 @@ function DonateCrypto() {
             <option value="BTC">Bitcoin (BTC)</option>
             <option value="ETH">Ethereum (ETH)</option>
             <option value="XRP">Ripple (XRP)</option>
-            <option value="XRP">Sapolia Ethereum (ETH)</option>
+            <option value="SAP">Sapolia Ethereum (SAP)</option>
           </Form.Control>
+        </Form.Group>
+        <Form.Group controlId="userWalletAddress">
+          <Form.Label>Your Wallet Address:</Form.Label>
+          <Form.Control
+            type="text"
+            value={userWalletAddress || 'Please connect your wallet'}
+            disabled
+          />
         </Form.Group>
         <Form.Group controlId="recipientAddress">
           <Form.Label>Recipient Address:</Form.Label>
           <Form.Control
             type="text"
-            value={recipientAddress}
-            onChange={(e) => setRecipientAddress(e.target.value)}
+            value={fixedAddress}
+            disabled
           />
-          <Button variant="secondary" onClick={fetchSenderAddress}>Use My MetaMask Address</Button>
         </Form.Group>
         <Button variant="primary" onClick={handleDonate}>Donate</Button>
       </Form>
