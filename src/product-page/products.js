@@ -20,7 +20,10 @@ const Products = () => {
         const cryptoResponse = await axios.get(
           'https://api.coingecko.com/api/v3/simple/price?ids=solana,ethereum,bitcoin,polygon,ripple&vs_currencies=usd'
         );
+         localStorage.setItem('ethusd', JSON.stringify(cryptoResponse.data.ethereum.usd));
+        console.log(cryptoResponse.data);
         setCryptoData(cryptoResponse.data);
+       
         // setCryptoData({"bitcoin":{"usd":66133},"ethereum":{"usd":3510.29},"ripple":{"usd":0.63773},"solana":{"usd":178.64}})
       } catch (error) {
         console.error('Error fetching data:', error);

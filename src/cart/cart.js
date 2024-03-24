@@ -3,7 +3,7 @@ import productsData from '../product-page/products.json';
 import './cart.css';
 
 const Cart=()=> {
-
+  let ethPrice;
   const [cartItems, setCartItems] = useState([
     // { id: 1, name: 'Product 1', price: 10, quantity: 1 },
     // { id: 2, name: 'Product 2', price: 20, quantity: 2 },
@@ -28,12 +28,11 @@ const Cart=()=> {
   };
 
   // Calculate total price of items in the cart
-  const totalPrice = cartItems.reduce((acc, item) => acc + item.price, 0);
+  const totalPrice = cartItems.reduce((acc, item) => acc + item.price * item.qty, 0);
 
   useEffect(()=>{
-    
     const storedProductIds = JSON.parse(localStorage.getItem('cartItems')) || [];
-
+    ethPrice = localStorage.getItem('ethusd');
     const filteredProducts = productsData.filter(product => storedProductIds.includes(product.id));
     setCartItems(filteredProducts);
   },[])
@@ -65,6 +64,10 @@ const Cart=()=> {
     localStorage.setItem('cartItems', JSON.stringify(temp.filter(item=> item !== id)));
   }
 
+  const getEthPrice = () => {
+    return localStorage.getItem('ethusd');
+  }
+
   return (
     <div className='container'>
       <div className='d-flex justify-content-between'>
@@ -81,7 +84,7 @@ const Cart=()=> {
             <img src={product.images[0]} alt={product.title} className="product-image" />
             <div className="product-details">
               <h3>{product.title}</h3>
-              <p>Price: ${product.price}</p>
+              <p>Price: ETH {(product.price/getEthPrice()).toFixed(6)} (${product.price}) </p>
               <div className='buttons'>
               <div className="quantity-controls">
                 <button className='quantity-button' onClick={() => decrementQuantity(product.id)}>-</button>
@@ -95,7 +98,7 @@ const Cart=()=> {
         ))}
       </ul>
       )}
-      <p>Total Price: ${totalPrice}</p>
+      <p>Total Price: ETH {(totalPrice/getEthPrice()).toFixed(6)}  (${totalPrice})</p>
      
    
     </div>

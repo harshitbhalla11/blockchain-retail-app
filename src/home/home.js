@@ -1,6 +1,7 @@
 
 import React from 'react';
 import Carousel from 'react-bootstrap/Carousel';
+import './home.css';
 
 const Home = () => {
   return (
@@ -32,10 +33,11 @@ const Home = () => {
          
           </Carousel.Item>
         </Carousel>
-        <h1>Welcome to Our E-Commerce Store</h1>
-        <p>Discover amazing products at great prices!</p>
+        <h1 className='welcome'>Welcome to Meta Store</h1>
+        <p className='subHeading'>Discover amazing products at great prices!</p>
       </div>
-      <div className="featured-products">
+      <div className="featured-products p-4">
+        <img src='/images/home.png' width={'100%'}></img>
       </div>
     </div>
   );
