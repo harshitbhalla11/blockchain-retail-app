@@ -64,7 +64,7 @@ function DonateCrypto() {
           </Form.Control>
         </Form.Group>
         <Form.Group controlId="userWalletAddress">
-          <Form.Label>Your Wallet Address:</Form.Label>
+          <Form.Label className='mt-2'>Your Wallet Address:</Form.Label>
           <Form.Control
             type="text"
             value={userWalletAddress || 'Please connect your wallet'}
@@ -72,14 +72,14 @@ function DonateCrypto() {
           />
         </Form.Group>
         <Form.Group controlId="recipientAddress">
-          <Form.Label>Recipient Address:</Form.Label>
+          <Form.Label className='my-2'>Recipient Address:</Form.Label>
           <Form.Control
             type="text"
             value={fixedAddress}
             disabled
           />
         </Form.Group>
-        <Button variant="primary" onClick={handleDonate}>Donate</Button>
+        <Button variant="primary" className='mt-2' onClick={handleDonate}>Donate</Button>
       </Form>
     </div>
   );

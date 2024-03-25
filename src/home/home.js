@@ -33,11 +33,13 @@ const Home = () => {
          
           </Carousel.Item>
         </Carousel>
-        <h1 className='welcome'>Welcome to Meta Store</h1>
+        <h1 className='welcome'>Welcome to<span className='mx-2'>
+          <img class="logo-img-heading" src="/images/logo.png" alt=""/>  
+          </span> Meta Store</h1>
         <p className='subHeading'>Discover amazing products at great prices!</p>
       </div>
       <div className="featured-products p-4">
-        <img src='/images/home.png' width={'100%'}></img>
+        <img src='/images/home.png'></img>
       </div>
     </div>
   );
