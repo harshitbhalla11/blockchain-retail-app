@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Reddit+Mono:wght@200..900&display=swap');
+
+.custom-font-cart {
+    font-family: 'Reddit Mono', monospace;
+    font-size: 30px;
+    color: #033E8C;
+}
 .cart-list {
     list-style-type: none;
     padding: 0;
@@ -61,3 +68,10 @@
     font-size: 18px;
   }
 
+  .gif{
+    width: 150px;
+    text-align: right;
+  }
+.image-container{
+  margin-top: 20px;
+}

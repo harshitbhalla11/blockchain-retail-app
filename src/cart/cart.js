@@ -70,9 +70,19 @@ const Cart=()=> {
 
   return (
     <div className='container'>
+       <div className='row'>
+          <div className='col-6 image-container'>
+             <h2 className='d-flex allign-items-center custom-font-cart'>Shopping Cart</h2>
+          </div>
+          <div className='col-6 d-flex justify-content-end'>  
+            <img className='gif' src='images/cart-gif.gif'></img>
+          </div>
+        </div>
       <div className='d-flex justify-content-between'>
-      <h2>Shopping Cart</h2>
-      <button className="btn btn-success ">Proceed to Buy</button>
+       
+
+    
+     
       </div>
 
       {cartItems.length === 0 ? (
@@ -99,7 +109,8 @@ const Cart=()=> {
       </ul>
       )}
       <p>Total Price: ETH {(totalPrice/getEthPrice()).toFixed(6)}  (${totalPrice})</p>
-     
+      <button className="btn btn-success ">Proceed to Buy</button>
+
    
     </div>
   );

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Form } from 'react-bootstrap';
-
+import './donate.css';
 function DonateCrypto() {
   const [cryptoAmount, setCryptoAmount] = useState('');
   const [selectedCrypto, setSelectedCrypto] = useState('BTC');
@@ -37,10 +37,19 @@ function DonateCrypto() {
 
   return (
     <div className="container mt-5">
-      <h2 className="mb-4">Donate Crypto</h2>
-      <p>Thank you for considering donating cryptocurrency to support our cause! Your contribution will make a real difference.</p>
-      <p>Your donation will help us provide clothing to those in need.</p>
-      <p>Please fill out the form below to make your donation:</p>
+       <div className='row'>
+          <div className='col-8'>
+          <h2 className="mb-4 custom-font heading-font">Donate Crypto</h2>                  
+     
+     <p className='custom-font'>Thank you for considering donating cryptocurrency to support our cause! Your contribution will make a real difference.</p>
+     <p className='custom-font'>Your donation will help us provide clothing to those in need.</p>
+     <p className='custom-font'>Please fill out the form below to make your donation:</p>
+          </div>
+          <div className='col-4'>
+          <img className="donate-image" src="/images/donate.png" alt="" />
+          </div>
+      </div>
+     
       <Form>
         <Form.Group controlId="cryptoAmount">
           <Form.Label>Amount:</Form.Label>

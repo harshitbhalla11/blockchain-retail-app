@@ -7,6 +7,7 @@ import { useCart } from '../context/CartContext';
 function Navbar() {
   const [account, setAccount] = useState('');
   const [balance, setBalance] = useState(0);
+  const [coinBalance, setCoinBalance] = useState(localStorage.getItem('tokenBalance') || 0);
 
   const { cartCount } = useCart();
 
@@ -39,6 +40,8 @@ function Navbar() {
         console.log('Please install MetaMask to use this dApp!');
       }
     };
+
+
 
     initWeb3();
   }, []);
@@ -94,8 +97,11 @@ function Navbar() {
             <a className='links' href='/'>Home</a>
             <a className='links'href='products'>Products</a>
             <a className='links'href='donate'>Donate</a>
+            <a className='links'href='orders'>My Orders</a>
+            <a className='links'href='withdraw'>Withdraw</a>
 
             <div className="d-flex align-items-center">
+              <span className="coin-container d-flex align-items-center" href='/withdraw'><span className='coin-balance'>{coinBalance}</span><img className='coin' src='images/coin.png'></img></span>
               {account && (
                 <a href='/cart' className="btn btn-outline-primary me-2">
                   <img className="wallet-img" src="/images/cart.gif" alt="" />
