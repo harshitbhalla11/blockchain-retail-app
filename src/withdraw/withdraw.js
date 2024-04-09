@@ -1,92 +1,73 @@
 import React, { useState, useEffect } from 'react';
-import web3 from 'web3';
-import myTokenABI from '../myABI-token';
+import Web3 from 'web3'; // Import web3 library
+import myTokenABI from '../myTokenABI';
+import './withdraw.css';
 
-const WithdrawTokens = ({ account }) => {
-  const [withdrawalAmount, setWithdrawalAmount] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [successMessage, setSuccessMessage] = useState('');
-  const [tokenBalance, setTokenBalance] = useState(0);
+function Withdraw() {
+  const [web3, setWeb3] = useState(null);
   const [contract, setContract] = useState(null);
+  const [account, setAccount] = useState(null);
+  const [balance, setBalance] = useState(null);
 
   useEffect(() => {
-    const initContract = async () => {
-      // Initialize web3
-      const ethereum = window.ethereum;
-      const web3Instance = new web3(ethereum);
-
-      // Set contract instance
-      const contractAddress = '0x59f3698b749D30F40Bf33Fbd84c166b69248cBBb'; 
-      const contractInstance = new web3Instance.eth.Contract(myTokenABI, contractAddress);
-      setContract(contractInstance);
-
-      // Fetch token balance from local storage
-      const storedBalance = localStorage.getItem('tokenBalance');
-      if (storedBalance) {
-        setTokenBalance(parseInt(storedBalance));
+    async function initWeb3() {
+      // Check if Web3 is injected by the browser
+      if (window.ethereum) {
+        const web3Instance = new Web3(window.ethereum);
+        setWeb3(web3Instance);
+        try {
+          // Request account access if needed
+          await window.ethereum.enable();
+          // Get the current account
+          const accounts = await web3Instance.eth.getAccounts();
+          setAccount(accounts[0]);
+          // Instantiate the contract
+          const contractInstance = new web3Instance.eth.Contract(
+            myTokenABI,
+            '0x0c4259d0f051e41bb96c4501134a88ab7c7510e6' 
+          );
+          setContract(contractInstance);
+        } catch (error) {
+          console.error('User denied account access');
+        }
       } else {
-        // If token balance not found in local storage, fetch from contract
-        const balance = await contractInstance.methods.balanceOf(account).call();
-        setTokenBalance(balance);
-        localStorage.setItem('tokenBalance', balance);
+        console.error('Web3 not detected. Please install MetaMask or use a Web3-enabled browser');
       }
-    };
-
-    initContract();
-  }, [account]);
-
-  const handleWithdrawal = async () => {
-    try {
-      setLoading(true);
-      setError(null);
-
-      // Convert withdrawal amount to Wei
-      const amountWei = web3.utils.toWei(withdrawalAmount, 'ether');
-      
-      // Validate withdrawal amount against token balance
-      if (parseInt(amountWei) > tokenBalance) {
-        throw new Error('Withdrawal amount exceeds token balance');
-      }
-
-      // Call the contract's transfer function to send tokens to the user's wallet
-      await contract.methods.transfer(account, amountWei).send({ from: account });
-
-      // Transaction successful, show success message
-      setSuccessMessage('Tokens withdrawn successfully.');
-      
-      // Update token balance after withdrawal
-      const updatedBalance = await contract.methods.balanceOf(account).call();
-      setTokenBalance(updatedBalance);
-      localStorage.setItem('tokenBalance', updatedBalance);
-    } catch (error) {
-      // Handle error
-      console.error('Error:', error);
-      setError('Failed to withdraw tokens. Please try again.');
-    } finally {
-      setLoading(false);
     }
-  };
 
+    initWeb3();
+  }, []);
+
+  useEffect(() => {
+    async function getBalance() {
+      if (web3 && contract && account) {
+        try {
+          // Call the balanceOf function of the contract
+          const balanceInWei = await contract.methods.balanceOf('0x59f3698b749D30F40Bf33Fbd84c166b69248cBBb').call();
+          // Convert balance from wei to MST
+          const balanceInMST = web3.utils.fromWei(balanceInWei.toString(), 'ether'); // Ensure balanceInWei is string
+          // const convertedBalance = balanceInMST / 1e12; // Convert balance to MST
+          setBalance(balanceInMST);
+        } catch (error) {
+          console.error('Error fetching balance:', error);
+        }
+      }
+    }
+
+    getBalance();
+  }, [web3, contract, account]);
   return (
-    <div>
-      <h2>Withdraw Tokens</h2>
-      <p>Available Balance: {tokenBalance}</p>
-      <inp  ut
-        
-        type="number"
-        placeholder="Enter withdrawal amount"
-        value={withdrawalAmount}
-        onChange={(e) => setWithdrawalAmount(e.target.value)}
-      />
-      <button onClick={handleWithdrawal} disabled={loading}>
-        Withdraw
-      </button>
-      {loading && <p>Loading...</p>}
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
+    <div className="App">
+      <header className="App-header">
+        <h1>My Token Balance</h1>
+        {balance !== null ? (
+          <p>Your balance: {balance} MST</p>
+        ) : (
+          <p>Loading balance...</p>
+        )}
+      </header>
     </div>
   );
-};
+}
 
-export default WithdrawTokens;
+export default Withdraw;
