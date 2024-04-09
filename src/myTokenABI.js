@@ -190,6 +190,19 @@ const myTokenABI =
 	},
 	{
 		"inputs": [],
+		"name": "contractCreator",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
 		"name": "decimals",
 		"outputs": [
 			{
@@ -254,5 +267,7 @@ const myTokenABI =
 		"type": "function"
 	}
 ]
-  export default myTokenABI;
+
+const contractAddress= "0xf4c84d88f9585bb0d646fd29aaaaadd4f77b2e69";
+export { myTokenABI, contractAddress };
   
