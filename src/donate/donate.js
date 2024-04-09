@@ -27,11 +27,14 @@ function DonateCrypto() {
   };
 
   const handleDonate = () => {
-    if (userWalletAddress) {
-      console.log(`Donating ${cryptoAmount} ${selectedCrypto} to address: ${fixedAddress}`);
-      setCryptoAmount('');
-    } else {
-      alert('Please connect your wallet to donate.');
+    if (window.confirm(`Are you sure you want to donate ${cryptoAmount} ${selectedCrypto} to Meta store?`)) {
+     console.log("money sent")
+    }
+    else if (userWalletAddress){
+      alert(`Please enter the amount to donate`);
+    }
+    else {
+      alert(`Please connect your wallet`);  
     }
   };
 
@@ -52,26 +55,14 @@ function DonateCrypto() {
      
       <Form>
         <Form.Group controlId="cryptoAmount">
-          <Form.Label>Amount:</Form.Label>
+          <Form.Label>Amount in ETH:</Form.Label>
           <Form.Control
             type="number"
             value={cryptoAmount}
             onChange={handleCryptoAmountChange}
           />
         </Form.Group>
-        <Form.Group controlId="cryptoSelect">
-          <Form.Label>Select Crypto:</Form.Label>
-          <Form.Control
-            as="select"
-            value={selectedCrypto}
-            onChange={handleCryptoChange}
-          >
-            <option value="BTC">Bitcoin (BTC)</option>
-            <option value="ETH">Ethereum (ETH)</option>
-            <option value="XRP">Ripple (XRP)</option>
-            <option value="SAP">Sapolia Ethereum (SAP)</option>
-          </Form.Control>
-        </Form.Group>
+         
         <Form.Group controlId="userWalletAddress">
           <Form.Label className='mt-2'>Your Wallet Address:</Form.Label>
           <Form.Control
@@ -80,15 +71,15 @@ function DonateCrypto() {
             disabled
           />
         </Form.Group>
-        <Form.Group controlId="recipientAddress">
+        {/* <Form.Group controlId="recipientAddress">
           <Form.Label className='my-2'>Recipient Address:</Form.Label>
           <Form.Control
             type="text"
             value={fixedAddress}
             disabled
           />
-        </Form.Group>
-        <Button variant="primary" className='mt-2' onClick={handleDonate}>Donate</Button>
+        </Form.Group> */}
+        <Button variant="primary" className='mt-4' onClick={handleDonate}>Donate</Button>
       </Form>
     </div>
   );
