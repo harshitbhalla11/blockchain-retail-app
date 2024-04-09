@@ -1,11 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Reddit+Mono:wght@200..900&display=swap');
+
+.custom-font-cart {
+    font-family: 'Reddit Mono', monospace;
+    font-size: 30px;
+    color: #033E8C;
+}
 .tokenbalance{
     font-size: 20px;
-    color: #033E8C;
+    color: #0a203c;
     font-weight: 700;
 }
 .withdraw-input{
     max-width: 400px;
 }
 .withdraw-container{
-    width:1000px;
+    display: flex;
+    margin: auto;
+    width: 70%;
+    border: solid 1px #033E8C;
+    padding: 10px;
+    border-radius: 20px;
+    min-height: 400px;
+}
+.withdraw-right{
+}
+.eth-image{
+    max-width: 420px;
+}
+
+.heading{
+    text-align: center;
 }

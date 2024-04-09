@@ -10,3 +10,18 @@
 .heading-font{
     color: #023e8c;
 }
+.eth-token{
+    max-height: 25px;
+}
+.input-eth{
+    width: 30%;
+    display: inline;
+    
+}
+.eth-label{
+    margin-left: 20px;
+    border-left: 5px solid #033E8C;
+    padding: 20px;
+    font-size: 20px;
+    color: grey;
+}

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Web3 from 'web3'; // Import web3 library
 import { myTokenABI, contractAddress } from '../myTokenABI';
 import './withdraw.css';
-import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 
 function Withdraw() {
   const [web3, setWeb3] = useState(null);
@@ -88,17 +87,18 @@ function Withdraw() {
   };
 
   return (
-    <div className="withdraw-container">
+    <div className="container ">
       <header className="App-header">
-      
-          <Row>
-            <Col>
-              <h1>MSOT Token Balance</h1>
+      <h1 className='heading custom-font-cart'>Withdraw your Tokens</h1>
+          <div className='row withdraw-container'>
+            <div className='col-6 d-flex justify-content-center align-items-center '>
+           
               {balance !== null ? (
                 <div>
-                  <p><img src='images/wallet-balance.png' width={70} alt='' />Your MSOT Balance:<span className='tokenbalance'> {balance} MST</span> </p>
+                  <img src='images/wallet-balance.png' width={70} alt='' />
+                  <p>Your MSOT Balance:<span className='tokenbalance'> {balance} MST</span> </p>
                   <p>Available Amount to Withdraw: <span className='tokenbalance'> {maxWithdrawAmount} MST</span> </p>
-                  <Form>
+                  <form>
                     <div className="input-group mb-3">
                       <input
                         type="number"
@@ -114,14 +114,17 @@ function Withdraw() {
                       </div>
                     </div>
 
-                  </Form>
+                  </form>
 
                 </div>
               ) : (
                 <p>Loading balance...</p>
               )}
-            </Col>
-          </Row>
+            </div>
+            <div className='col-6 withdraw-right d-flex justify-content-center align-items-center'>  
+                <img className="eth-image" src='images/eth.gif' alt=''/>
+            </div>
+          </div>
       </header>
     </div>
   );
