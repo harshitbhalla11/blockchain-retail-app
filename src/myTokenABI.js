@@ -266,8 +266,63 @@ const myTokenABI =
 		"stateMutability": "view",
 		"type": "function"
 	}
+];
+const donateABI=	[
+	{
+		"inputs": [],
+		"name": "deposit",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address payable",
+				"name": "_to",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_amount",
+				"type": "uint256"
+			}
+		],
+		"name": "withdraw",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAddress",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getBalance",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
 ]
 
 const contractAddress= "0xf4c84d88f9585bb0d646fd29aaaaadd4f77b2e69";
-export { myTokenABI, contractAddress };
+const donateContractAddress= "0xebd7597c78118b8fb1713818e6778eaa15499c84";
+
+export { myTokenABI, contractAddress, donateContractAddress ,donateABI};
   
