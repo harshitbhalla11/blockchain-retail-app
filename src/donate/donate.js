@@ -108,9 +108,9 @@ function DonateCrypto() {
      
       <Form>
         <div className='mb-5'>
-        <button onClick={(e)=>{ e.preventDefault();  setCryptoAmount(parseFloat(cryptoAmount)+0.05)}} className='amount-button'>0.05</button>
-        <button onClick={(e)=>{ e.preventDefault();  setCryptoAmount(parseFloat(cryptoAmount)+0.10)}} className='amount-button'>0.10</button>
-        <button onClick={(e)=>{ e.preventDefault();  setCryptoAmount(parseFloat(cryptoAmount)+0.25)}} className='amount-button'>0.25</button>
+        <button onClick={(e)=>{ e.preventDefault();  setCryptoAmount(parseFloat(cryptoAmount)+0.05); setConvertedAmount(cryptoAmount*parseFloat(cryptoData.ethereum.usd))}} className='amount-button'>0.05</button>
+        <button onClick={(e)=>{ e.preventDefault();  setCryptoAmount(parseFloat(cryptoAmount)+0.10); setConvertedAmount(parseFloat(cryptoAmount)*parseFloat(cryptoData.ethereum.usd))}} className='amount-button'>0.10</button>
+        <button onClick={(e)=>{ e.preventDefault();  setCryptoAmount(parseFloat(cryptoAmount)+0.25); setConvertedAmount(parseFloat(cryptoAmount)*parseFloat(cryptoData.ethereum.usd))}} className='amount-button'>0.25</button>
         <button onClick={(e)=>{ e.preventDefault();  setCryptoAmount(parseFloat(cryptoAmount)+1); setConvertedAmount(parseFloat(cryptoAmount)*parseFloat(cryptoData.ethereum.usd))}} className='amount-button'>1</button>
 
         </div>

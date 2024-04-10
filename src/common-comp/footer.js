@@ -28,7 +28,6 @@ function Footer() {
       </div>
       <div className="footer-column mt-4 mb-4">
          <h3>SIGN UP AND SAVE</h3>
-        <p>Sign up now and be the first to know about exclusive offers, latest fashion trends & style tips!</p>
         <form className="subscribe-form">
           <input type="email" placeholder="Enter your email" />
           <button type="submit">SUBSCRIBE</button>

@@ -72,7 +72,6 @@ function Withdraw() {
       return;
     }
     try {
-      let contractAddress = "0x59f3698b749D30F40Bf33Fbd84c166b69248cBBb"
       await contract.methods.transfer(account, web3.utils.toWei(withdrawAmount.toString(), 'ether')).send({ from: account });
       alert('Withdraw successful!');
       setWithdrawAmount('');
@@ -96,7 +95,7 @@ function Withdraw() {
               {balance !== null ? (
                 <div>
                   <img src='images/wallet-balance.png' width={70} alt='' />
-                  <p>Your MSOT Balance:<span className='tokenbalance'> {balance} MST</span> </p>
+                  <p>Your Wallet Balance:<span className='tokenbalance'> {balance} MST</span> </p>
                   <p>Available Amount to Withdraw: <span className='tokenbalance'> {maxWithdrawAmount} MST</span> </p>
                   <form>
                     <div className="input-group mb-3">
