@@ -1,0 +1,42 @@
+.order-row{
+
+}
+.order-container {
+    border: 2px solid #181c61;
+    border-radius: 15px;
+    background-color: #fcf9f9; 
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); 
+}
+
+.order-container:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2); 
+}
+
+.order-products{
+    max-width: 100px;
+    border-radius: 10px;
+}
+.each-product{
+    margin-bottom: 5px;
+    margin-right: 10px;
+    margin-right: 20px;
+}
+.orderid-heading{
+    color: #181c61;
+}
+
+.main-heading{
+    font-size: 35px;
+    color: #051933;
+}
+.order-cont{
+    max-width: 70%;
+}
+.product-title{
+    font-size: 16px;
+}
+.prodquant{
+    margin-bottom: 20px;
+}

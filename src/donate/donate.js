@@ -37,8 +37,7 @@ function DonateCrypto() {
           console.error('User denied account access');
         }
       } else {
-        console.error('Web3 not detected. Please install MetaMask or use a Web3-enabled browser');
-      }
+        console.error('No wallet detected. Please install MetaMask.');      }
     }
     const fetchData = async () => {
       try {

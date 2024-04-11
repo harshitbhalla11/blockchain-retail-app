@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Web3 from 'web3'; // Import web3 library
+import Web3 from 'web3'; 
 import { myTokenABI, contractAddress } from '../myTokenABI';
 import './withdraw.css';
 
@@ -13,18 +13,14 @@ function Withdraw() {
 
   useEffect(() => {
     async function initWeb3() {
-      // Check if Web3 is injected by the browser
       if (window.ethereum) {
         const web3Instance = new Web3(window.ethereum);
         setWeb3(web3Instance);
         try {
-          // Request account access if needed
           await window.ethereum.enable();
-          // Get the current account
           const accounts = await web3Instance.eth.getAccounts();
           console.log(accounts)
           setAccount(accounts[0]);
-          // Instantiate the contract
           const contractInstance = new web3Instance.eth.Contract(
             myTokenABI,
             contractAddress
@@ -34,7 +30,7 @@ function Withdraw() {
           console.error('User denied account access');
         }
       } else {
-        console.error('Web3 not detected. Please install MetaMask or use a Web3-enabled browser');
+        console.error('No wallet detected. Please install MetaMask.');
       }
     }
 
@@ -46,11 +42,9 @@ function Withdraw() {
       if (web3 && contract && account) {
         try {
           const balanceInWei = await contract.methods.balanceOf(account).call();
-          // Convert balance from wei to MS
           const balanceInMST = web3.utils.fromWei(balanceInWei, 'ether');
           const balanceInMSTNumeric = parseFloat(balanceInMST);
           setBalance(balanceInMSTNumeric);
-          // Retrieve maximum withdrawable amount from local storage
           const maxWithdraw = localStorage.getItem('tokenBalance');
           setMaxWithdrawAmount(maxWithdraw ? parseFloat(maxWithdraw) : 0);
         } catch (error) {
@@ -78,7 +72,6 @@ function Withdraw() {
       let updatedBalance = maxWithdrawAmount - withdrawAmount;
       localStorage.setItem('tokenBalance', updatedBalance.toString());
       setMaxWithdrawAmount(updatedBalance);
-      // You may want to refresh balance here
     } catch (error) {
       console.error('Error in withdrawing:', error);
       alert('Error in withdrawing.');
