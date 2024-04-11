@@ -103,8 +103,9 @@ const Cart = () => {
                 value: web3.utils.toWei((totalPrice / ethPrice).toFixed(6) , 'ether') 
             });
             console.log('Order placed:', transaction);
-            const temp=localStorage.getItem('tokenBalance');
-            localStorage.setItem((parseInt(temp)+1).toString());
+            const temp = localStorage.getItem('tokenBalance');
+            localStorage.setItem('tokenBalance', (parseInt(temp) + 10).toString());
+            
             window.location.href = '/orders';
         } catch (error) {
             console.error('Error placing order:', error);
