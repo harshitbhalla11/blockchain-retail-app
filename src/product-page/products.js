@@ -35,11 +35,6 @@ const Products = () => {
 
   const handleCryptoChange = (event) => {
     setSelectedCrypto(event);
-  //   productsData.forEach(product => {
-     
-  //   product.price =  (product.price / getUSDValue(event)).toFixed(8) ;
-  // });
-  // setProducts(productsData);
   };
 
   const getUSDValue =(selected) =>{
