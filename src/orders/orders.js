@@ -11,18 +11,14 @@ const Order = () => {
 
     useEffect(() => {
         async function initWeb3() {
-            // Check if Web3 is injected by the browser
             if (window.ethereum) {
                 const web3Instance = new Web3(window.ethereum);
                 setWeb3(web3Instance);
                 try {
-                    // Request account access if needed
                     await window.ethereum.enable();
-                    // Get the current account
                     const accounts = await web3Instance.eth.getAccounts();
                     console.log(accounts);
                     setAccount(accounts[0]);
-                    // Instantiate the contract
                     const contractInstance = new web3Instance.eth.Contract(
                         orderABI,
                         OrderContractAddress
